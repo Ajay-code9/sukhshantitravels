@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Cinzel", serif;
+  --font-body: "Lora", serif;
+  
+  --color-bhagwa-50: #fff7ed;
+  --color-bhagwa-100: #ffedd5;
+  --color-bhagwa-200: #fed7aa;
+  --color-bhagwa-300: #fdba74;
+  --color-bhagwa-400: #fb923c;
+  --color-bhagwa-500: #f97316;
+  --color-bhagwa-600: #ea580c;
+  --color-bhagwa-700: #c2410c;
+  --color-bhagwa-800: #9a3412;
+  --color-bhagwa-900: #7c2d12;
+}
