@@ -26,6 +26,7 @@ import {
 import { motion, AnimatePresence } from 'motion/react';
 
 export default function App() {
+  const assetBase = import.meta.env.BASE_URL;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [formData, setFormData] = useState({
@@ -97,7 +98,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-orange-50 font-body text-slate-900 selection:bg-bhagwa-200">
+    <div className="min-h-screen overflow-x-hidden bg-orange-50 font-body text-slate-900 selection:bg-bhagwa-200">
       {/* Navbar */}
       <nav 
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -110,10 +111,11 @@ export default function App() {
           <a 
             href="#home" 
             onClick={(e) => scrollToSection(e, '#home')}
-            className={`text-2xl font-display font-bold tracking-tight transition-colors ${
+            className={`flex items-center gap-3 text-2xl font-display font-bold tracking-tight transition-colors ${
               isScrolled ? 'text-bhagwa-700' : 'text-white'
             }`}
           >
+            <img src={`${assetBase}favicon.svg`} alt="Sukh Shanti logo" className="h-9 w-9 rounded-md bg-white/10 p-1" />
             Sukh Shanti<span className="text-bhagwa-500">.</span>
           </a>
 
@@ -195,7 +197,7 @@ export default function App() {
               repeatType: "reverse", 
               ease: "linear" 
             }}
-            src="/homebg.svg" 
+            src={`${assetBase}homebg.svg`} 
             alt="Baba Balak Nath Temple Deotsidh" 
             className="w-full h-full object-cover"
             referrerPolicy="no-referrer"
@@ -209,7 +211,7 @@ export default function App() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <span className="inline-block px-8 py-3 mb-10 text-sm md:text-base font-bold tracking-[0.4em] text-bhagwa-300 uppercase bg-white/5 backdrop-blur-md border border-white/20 rounded-full shadow-xl">
+            <span className="inline-block px-5 py-3 mb-10 text-xs sm:text-sm md:text-base font-bold tracking-[0.2em] sm:tracking-[0.28em] md:tracking-[0.4em] text-bhagwa-300 uppercase bg-white/5 backdrop-blur-md border border-white/20 rounded-full shadow-xl">
               Jai Baba Balak Nath Ji
             </span>
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-display font-black mb-6 tracking-tight leading-tight drop-shadow-2xl">
@@ -262,7 +264,7 @@ export default function App() {
       <section id="services" className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-sm font-bold text-bhagwa-600 uppercase tracking-[0.4em] mb-4">Our Offerings</h2>
+            <h2 className="text-sm font-bold text-bhagwa-600 uppercase tracking-[0.2em] sm:tracking-[0.3em] md:tracking-[0.4em] mb-4">Our Offerings</h2>
             <h3 className="text-4xl md:text-5xl font-display font-bold text-slate-900 tracking-tight">Premium Travel Services</h3>
             <div className="w-24 h-1.5 bg-gradient-to-r from-bhagwa-500 to-yellow-500 mx-auto mt-6 rounded-full" />
           </div>
@@ -318,7 +320,7 @@ export default function App() {
             </div>
 
             <div>
-              <h2 className="text-sm font-bold text-bhagwa-300 uppercase tracking-[0.4em] mb-4">About Sukh Shanti</h2>
+              <h2 className="text-sm font-bold text-bhagwa-300 uppercase tracking-[0.2em] sm:tracking-[0.3em] md:tracking-[0.4em] mb-4">About Sukh Shanti</h2>
               <h3 className="text-4xl md:text-5xl font-display font-bold mb-8 tracking-tight leading-tight">Spiritual & Scenic Journeys from Himachal Pradesh</h3>
               <p className="text-lg text-bhagwa-100/80 leading-relaxed mb-8">
                 Located in the holy town of **Deotsidh, Distt Hamirpur**, Sukh Shanti Tour & Travels is your premier partner for exploring the divine and natural wonders of Himachal Pradesh. We are blessed to serve pilgrims and travelers visiting the sacred shrine of Baba Balak Nath Ji.
@@ -357,7 +359,7 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             <div>
-              <h2 className="text-sm font-bold text-bhagwa-600 uppercase tracking-[0.4em] mb-4">Get In Touch</h2>
+              <h2 className="text-sm font-bold text-bhagwa-600 uppercase tracking-[0.2em] sm:tracking-[0.3em] md:tracking-[0.4em] mb-4">Get In Touch</h2>
               <h3 className="text-4xl md:text-5xl font-display font-bold text-slate-900 mb-8 tracking-tight">Visit Our Office</h3>
               <p className="text-lg text-slate-600 mb-12 italic">
                 "Jai Baba Balak Nath Ji" - We are located right in the heart of Deotsidh. Reach out for bookings or inquiries.
@@ -380,8 +382,8 @@ export default function App() {
                   <div>
                     <p className="text-sm font-bold text-slate-400 uppercase tracking-[0.2em]">Our Office</p>
                     <p className="text-xl font-display font-bold text-slate-900 leading-tight">
-                      Deotsidh, Distt Hamirpur, <br />
-                      Himachal Pradesh, 176039
+                      Bijhar, Distt Hamirpur, <br />
+                      Himachal Pradesh, 176040
                     </p>
                   </div>
                 </div>
@@ -458,7 +460,8 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
             <div className="lg:col-span-1">
-              <a href="#home" className="text-2xl font-display font-bold mb-6 block">
+              <a href="#home" className="mb-6 flex items-center gap-3 text-2xl font-display font-bold">
+                <img src={`${assetBase}favicon.svg`} alt="Sukh Shanti logo" className="h-9 w-9 rounded-md bg-white/10 p-1" />
                 Sukh Shanti<span className="text-bhagwa-500">.</span>
               </a>
               <p className="text-slate-400 leading-relaxed mb-6 italic">
@@ -500,8 +503,8 @@ export default function App() {
               <p className="text-slate-400 mb-4 text-sm leading-relaxed">
                 Sukh Shanti Tour & Travels <br />
                 Near Baba Balak Nath Temple, <br />
-                Deotsidh, Distt Hamirpur, <br />
-                Himachal Pradesh - 176039
+                Bijhar, Distt Hamirpur, <br />
+                Himachal Pradesh - 176040
               </p>
               <div className="flex gap-4">
                 <a href="#" className="w-10 h-10 bg-white/5 text-slate-400 rounded-full flex items-center justify-center hover:bg-bhagwa-600 hover:text-white transition-all">
