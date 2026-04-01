@@ -35,7 +35,7 @@ export default function App() {
     details: ''
   });
 
-  const handleBookingSubmit = (e: React.FormEvent) => {
+  const handleBookingSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.phone) {
       alert("Please fill in your name and phone number.");
@@ -49,8 +49,23 @@ export default function App() {
       `Phone: ${formData.phone}`,
       `Travel Details: ${details}`,
     ].join('\n');
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: 'Booking Request - Sukh Shanti Tour & Travels',
+          text: message,
+        });
+        return;
+      } catch (error) {
+        // If user cancels share sheet, stop without opening external page.
+        if (error instanceof DOMException && error.name === 'AbortError') {
+          return;
+        }
+      }
+    }
+
     const whatsappUrl = `https://wa.me/917018404537?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, '_blank');
+    window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
   };
 
   useEffect(() => {
