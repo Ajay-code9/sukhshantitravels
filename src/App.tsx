@@ -26,6 +26,7 @@ import {
 import { motion, AnimatePresence } from 'motion/react';
 
 export default function App() {
+  const businessWhatsappNumber = '917018404537';
   const assetBase = import.meta.env.BASE_URL;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -35,7 +36,7 @@ export default function App() {
     details: ''
   });
 
-  const handleBookingSubmit = async (e: React.FormEvent) => {
+  const handleBookingSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.phone) {
       alert("Please fill in your name and phone number.");
@@ -49,22 +50,7 @@ export default function App() {
       `Phone: ${formData.phone}`,
       `Travel Details: ${details}`,
     ].join('\n');
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: 'Booking Request - Sukh Shanti Tour & Travels',
-          text: message,
-        });
-        return;
-      } catch (error) {
-        // If user cancels share sheet, stop without opening external page.
-        if (error instanceof DOMException && error.name === 'AbortError') {
-          return;
-        }
-      }
-    }
-
-    const whatsappUrl = `https://wa.me/917018404537?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://wa.me/${businessWhatsappNumber}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
   };
 
@@ -556,7 +542,7 @@ export default function App() {
         <motion.a 
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
-          href="https://wa.me/917018404537"
+          href={`https://wa.me/${businessWhatsappNumber}`}
           target="_blank"
           rel="noopener noreferrer"
           className="w-16 h-16 bg-[#25D366] text-white rounded-full shadow-2xl flex items-center justify-center border-2 border-white/20"
