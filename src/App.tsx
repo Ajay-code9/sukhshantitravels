@@ -41,8 +41,15 @@ export default function App() {
       alert("Please fill in your name and phone number.");
       return;
     }
-    const message = `*New Booking Request - Sukh Shanti Tour & Travels*%0A%0A*Name:* ${formData.name}%0A*Phone:* ${formData.phone}%0A*Travel Details:* ${formData.details}`;
-    const whatsappUrl = `https://wa.me/917018404537?text=${message}`;
+    const details = formData.details?.trim() || 'Not provided';
+    const message = [
+      'New Booking Request - Sukh Shanti Tour & Travels',
+      '',
+      `Name: ${formData.name}`,
+      `Phone: ${formData.phone}`,
+      `Travel Details: ${details}`,
+    ].join('\n');
+    const whatsappUrl = `https://wa.me/917018404537?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   };
 
