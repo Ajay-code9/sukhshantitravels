@@ -5,8 +5,10 @@ import {defineConfig, loadEnv} from 'vite';
 
 export default defineConfig(({mode}) => {
   const env = loadEnv(mode, '.', '');
+  const isGitHubPagesBuild = process.env.GITHUB_ACTIONS === 'true';
   return {
-    base: '/sukhshantitravels/',
+    // Use repo subpath only for GitHub Pages; Vercel/normal deploys use root.
+    base: isGitHubPagesBuild ? '/sukhshantitravels/' : '/',
     plugins: [react(), tailwindcss()],
     define: {
       'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY),
