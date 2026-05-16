@@ -25,6 +25,9 @@ import {
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
+const BOOKING_WHATSAPP_MESSAGE =
+  'Hello! I would like to know more about your travel plans and services.';
+
 export default function App() {
   const businessWhatsappNumber = '917018404537';
   const assetBase = import.meta.env.BASE_URL;
@@ -33,25 +36,25 @@ export default function App() {
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
-    details: ''
   });
+
+  const getWhatsAppUrl = (message: string) =>
+    `https://wa.me/${businessWhatsappNumber}?text=${encodeURIComponent(message)}`;
+
+  const openWhatsAppWithMessage = (message: string) => {
+    const whatsappUrl = getWhatsAppUrl(message);
+    const link = document.createElement('a');
+    link.href = whatsappUrl;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
   const handleBookingSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.name || !formData.phone) {
-      alert("Please fill in your name and phone number.");
-      return;
-    }
-    const details = formData.details?.trim() || 'Not provided';
-    const message = [
-      'New Booking Request - Sukh Shanti Tour & Travels',
-      '',
-      `Name: ${formData.name}`,
-      `Phone: ${formData.phone}`,
-      `Travel Details: ${details}`,
-    ].join('\n');
-    const whatsappUrl = `https://wa.me/${businessWhatsappNumber}?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+    openWhatsAppWithMessage(BOOKING_WHATSAPP_MESSAGE);
   };
 
   useEffect(() => {
@@ -412,14 +415,18 @@ export default function App() {
             </div>
 
             <div className="bg-bhagwa-50/50 p-8 md:p-12 rounded-[3rem] border border-bhagwa-100 shadow-2xl shadow-bhagwa-900/5">
-              <h4 className="text-2xl font-display font-bold text-bhagwa-900 mb-8">Send a Booking Request</h4>
+              <h4 className="text-2xl font-display font-bold text-bhagwa-900 mb-4">Send a Booking Request</h4>
+              <p className="mb-6 rounded-2xl border border-bhagwa-200 bg-white px-5 py-4 text-sm leading-relaxed text-bhagwa-900">
+                <span className="font-bold text-bhagwa-700">WhatsApp message preview:</span>
+                <br />
+                {BOOKING_WHATSAPP_MESSAGE}
+              </p>
               <form className="space-y-6" onSubmit={handleBookingSubmit}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="text-sm font-bold text-bhagwa-800 ml-1">Full Name</label>
                     <input 
                       type="text" 
-                      required
                       placeholder="Your Name"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -430,23 +437,12 @@ export default function App() {
                     <label className="text-sm font-bold text-bhagwa-800 ml-1">Phone Number</label>
                     <input 
                       type="tel" 
-                      required
                       placeholder="+91"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       className="w-full px-6 py-4 bg-white border border-bhagwa-200 rounded-2xl focus:outline-none focus:ring-4 focus:ring-bhagwa-500/10 focus:border-bhagwa-500 transition-all font-medium"
                     />
                   </div>
-                </div>
-                <div className="space-y-2">
-                  <label className="text-sm font-bold text-bhagwa-800 ml-1">Travel Details</label>
-                  <textarea 
-                    rows={4}
-                    placeholder="E.g. Deotsidh to Chandigarh, 4 Passengers..."
-                    value={formData.details}
-                    onChange={(e) => setFormData({ ...formData, details: e.target.value })}
-                    className="w-full px-6 py-4 bg-white border border-bhagwa-200 rounded-2xl focus:outline-none focus:ring-4 focus:ring-bhagwa-500/10 focus:border-bhagwa-500 transition-all resize-none font-medium"
-                  ></textarea>
                 </div>
                 <button 
                   type="submit"
@@ -542,7 +538,7 @@ export default function App() {
         <motion.a 
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
-          href={`https://wa.me/${businessWhatsappNumber}`}
+          href={getWhatsAppUrl(BOOKING_WHATSAPP_MESSAGE)}
           target="_blank"
           rel="noopener noreferrer"
           className="w-16 h-16 bg-[#25D366] text-white rounded-full shadow-2xl flex items-center justify-center border-2 border-white/20"
