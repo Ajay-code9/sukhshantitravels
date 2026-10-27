@@ -1,0 +1,110 @@
+{
+  "shimla": {
+    "src": "destinations/shimla.webp",
+    "author": "Navneet Sharma",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Landscape_of_Shimla_,_Himachal_Pradesh.jpg",
+    "title": "Landscape of Shimla , Himachal Pradesh.jpg",
+    "note": "Resized, converted to WebP and displayed with a responsive crop."
+  },
+  "manali": {
+    "src": "destinations/manali.webp",
+    "author": "Neerajsinghazm",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Manali_City.jpg",
+    "title": "Manali City.jpg",
+    "note": "Resized, converted to WebP and displayed with a responsive crop."
+  },
+  "dharamshala": {
+    "src": "destinations/dharamshala.webp",
+    "author": "Amit Phulera",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Dharamshala_03_(Cropped).jpg",
+    "title": "Dharamshala 03 (Cropped).jpg",
+    "note": "Resized, converted to WebP and displayed with a responsive crop."
+  },
+  "dalhousie": {
+    "src": "destinations/dalhousie.webp",
+    "author": "Arkadeep Meta",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Dalhouise_1.jpg",
+    "title": "Dalhouise 1.jpg",
+    "note": "Resized, converted to WebP and displayed with a responsive crop."
+  },
+  "khajjiar": {
+    "src": "destinations/khajjiar.webp",
+    "author": "7018412375",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Nature_of_Khajjiar.jpg",
+    "title": "Nature of Khajjiar.jpg",
+    "note": "Resized, converted to WebP and displayed with a responsive crop."
+  },
+  "kasauli": {
+    "src": "destinations/kasauli.webp",
+    "author": "Vijitgrover77",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Kasauli_hills.jpg",
+    "title": "Kasauli hills.jpg",
+    "note": "Resized, converted to WebP and displayed with a responsive crop."
+  },
+  "kasol": {
+    "src": "destinations/kasol.webp",
+    "author": "BenSalo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Kasol_mountain_view.jpg",
+    "title": "Kasol mountain view.jpg",
+    "note": "Resized, converted to WebP and displayed with a responsive crop."
+  },
+  "bir": {
+    "src": "destinations/bir.webp",
+    "author": "Fredi Bach from Switzerland",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:An_aerial_view_of_Bir,_Kangra_valley_sights_nature_culture_Himachal_Pradesh_India_2015.jpg",
+    "title": "An aerial view of Bir, Kangra valley sights nature culture Himachal Pradesh India 2015.jpg",
+    "note": "Resized, converted to WebP and displayed with a responsive crop."
+  },
+  "palampur": {
+    "src": "destinations/palampur.webp",
+    "author": "Sumeet Jain from San Francisco, USA",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:A_view_of_Palampur_Himachal_Pradesh_India.jpg",
+    "title": "A view of Palampur Himachal Pradesh India.jpg",
+    "note": "Resized, converted to WebP and displayed with a responsive crop."
+  },
+  "spiti": {
+    "src": "destinations/spiti.webp",
+    "author": "Timothy A. Gonsalves",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Spiti_River_Kaza_Himachal_Jun18_D72_7232.jpg",
+    "title": "Spiti River Kaza Himachal Jun18 D72 7232.jpg",
+    "note": "Resized, converted to WebP and displayed with a responsive crop."
+  },
+  "kinnaur": {
+    "src": "destinations/kinnaur.webp",
+    "author": "Anubhav Agarwal; edit by UnpetitproleX",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Kinner_Kailash_Mountain_Range_(edited).jpg",
+    "title": "Kinner Kailash Mountain Range (edited).jpg",
+    "note": "Resized, converted to WebP and displayed with a responsive crop."
+  },
+  "tirthan": {
+    "src": "destinations/tirthan.webp",
+    "author": "Ramwik",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Tirthan_River,_Himachal_Pradesh.jpeg",
+    "title": "Tirthan River, Himachal Pradesh.jpeg",
+    "note": "Resized, converted to WebP and displayed with a responsive crop."
+  }
+}
