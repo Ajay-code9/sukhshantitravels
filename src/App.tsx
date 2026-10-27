@@ -18,9 +18,17 @@ const links = ['Home', 'Destinations', 'Fleet', 'Services', 'About', 'Contact'];
 
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [headerCompact, setHeaderCompact] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const header = useRef<HTMLElement>(null);
   const menuButton = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    const update = () => setHeaderCompact(current => window.scrollY > (current ? 24 : 80));
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+    return () => window.removeEventListener('scroll', update);
+  }, []);
 
   useEffect(() => {
     const element = header.current;
@@ -59,7 +67,7 @@ export default function App() {
       if (!target) return;
       setMenuOpen(false);
       requestAnimationFrame(() => {
-        const offset = (header.current?.getBoundingClientRect().height ?? 88) + 12;
+        const offset = (header.current ? parseFloat(getComputedStyle(header.current).getPropertyValue('--compact-header-height')) : 60) + 12;
         window.scrollTo({ top: hash === '#home' ? 0 : Math.max(0, window.scrollY + target.getBoundingClientRect().top - offset), behavior: smooth && !window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'smooth' : 'instant' });
         if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
         target.focus({ preventScroll: true });
@@ -98,7 +106,7 @@ export default function App() {
   const message = [greeting, '', `Name: ${form.name.trim() || 'Not entered'}`, `Pickup: ${form.pickup.trim() || 'Not entered'}`, `Destination: ${form.destination.trim() || 'Not entered'}`, `Travel date: ${form.date ? `${day}/${month}/${year}` : 'Not selected'}`, ...(form.phone.trim() ? [`Callback number: ${form.phone.trim()}`] : []), '', 'Please share the fare, available vehicle options and seating capacity.'].join('\n');
   const field = (key: keyof typeof form, label: string, placeholder: string, type = 'text', required = true) => <div className="field"><label htmlFor={key}>{label}{!required && <span> (optional)</span>}</label><input id={key} name={key} type={type} placeholder={placeholder} value={form[key]} required={required} min={type === 'date' ? today : undefined} maxLength={type === 'date' ? undefined : 120} autoComplete={key === 'name' ? 'name' : key === 'phone' ? 'tel' : undefined} pattern={key === 'phone' ? '[+0-9 ()-]{7,20}' : undefined} onChange={e => setForm({ ...form, [key]: e.target.value })} onBlur={e => { if (type !== 'date') setForm(current => ({ ...current, [key]: e.target.value.trim() })); }} /></div>;
   return <div className="site-shell"><a className="skip-link" href="#main-content">Skip to content</a>
-    <header className="site-header" ref={header}><a className="brand" href="#home"><img src={`${import.meta.env.BASE_URL}brand-mark.png`} alt="" width="42" height="42" /><span>Sukh Shanti<small>TOUR & TRAVELS</small></span></a><button type="button" ref={menuButton} className="menu-toggle" aria-label={menuOpen ? 'Close navigation' : 'Open navigation'} aria-expanded={menuOpen} aria-controls="navigation" onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? <X /> : <Menu />}</button><nav aria-label="Main navigation" id="navigation" className={menuOpen ? 'navigation open' : 'navigation'}>{links.map(link => <a key={link} href={`#${link.toLowerCase()}`} aria-current={activeSection === link.toLowerCase() ? 'location' : undefined} onClick={() => setMenuOpen(false)}>{link}</a>)}<a className="button small" href={`tel:+${PHONE}`}><Phone size={16} /> Call now</a></nav></header>
+    <header className={headerCompact ? "site-header is-compact" : "site-header"} ref={header}><a className="brand" href="#home"><img src={`${import.meta.env.BASE_URL}brand-mark.png`} alt="" width="42" height="42" /><span>Sukh Shanti<small>TOUR & TRAVELS</small></span></a><button type="button" ref={menuButton} className="menu-toggle" aria-label={menuOpen ? 'Close navigation' : 'Open navigation'} aria-expanded={menuOpen} aria-controls="navigation" onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? <X /> : <Menu />}</button><nav aria-label="Main navigation" id="navigation" className={menuOpen ? 'navigation open' : 'navigation'}>{links.map(link => <a key={link} href={`#${link.toLowerCase()}`} aria-current={activeSection === link.toLowerCase() ? 'location' : undefined} onClick={() => setMenuOpen(false)}>{link}</a>)}<a className="button small" href={`tel:+${PHONE}`}><Phone size={16} /> Call now</a></nav></header>
     <main id="main-content">
       <section id="home" className="hero"><img className="hero-image" src={`${import.meta.env.BASE_URL}hero-himachal.webp`} alt="Baba Balak Nath shrine in Deotsidh, Himachal Pradesh" width="1600" height="900" fetchPriority="high" /><div className="hero-shade" /><div className="hero-content wrap"><p className="devotion">JAI BABA BALAK NATH JI</p><p className="eyebrow light">BIJHAR & DEOTSIDH · HIMACHAL PRADESH</p><h1>Taxi service in Hamirpur.<br /><em>Your Himachal journey.</em></h1><p className="hero-description">Local and outstation taxis from Bijhar & Deotsidh, Hamirpur.<br className="desktop-break" /> Airport transfers, Baba Balak Nath visits and Himachal tours.</p><div className="actions"><a className="button" href="#contact">Plan your ride <ArrowUpRight size={20} /></a><a className="button outline" href={`tel:+${PHONE}`}><Phone size={18} /> +91 70184 04537</a></div><div className="hero-note"><Clock size={16} /> Call or WhatsApp for travel enquiries, 24/7</div></div><div className="hero-bottom wrap"><span>Rooted in Himachal. Ready for your journey.</span><a href="#services">Explore our services ↓</a></div></section>
       <DestinationCarousel />

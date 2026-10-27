@@ -9,7 +9,7 @@
   --orange: #b94718;
   --green: #273d30;
   --gutter: clamp(1rem, 3.2cqi, 2.5rem);
-  --header-height: 5.5rem;
+  --header-height: 4.5rem;
   --contact-bar-height: 0px;
 }
 * { box-sizing: border-box; }
@@ -189,7 +189,7 @@ footer { background: #1d2b23; color: #d6dace; padding-block: 3.5rem calc(2rem + 
   .contact-grid > div:first-child { max-width: 48rem; }
 }
 @container site (max-width: 960px) {
-  .site-header, footer, .mobile-contact { --header-height: 4.5rem; }
+  .site-header, footer, .mobile-contact { --header-height: 3.75rem; }
   .site-header { gap: 1rem; }
   .brand { font-size: 1.25rem; }
   .brand img { width: 2.25rem; height: 2.25rem; }
@@ -253,7 +253,7 @@ footer { background: #1d2b23; color: #d6dace; padding-block: 3.5rem calc(2rem + 
 }
 
 /* Scroll offsets follow the viewport; layout breakpoints follow the page container. */
-@media (max-width: 960px) { :root { --header-height: 4.5rem; } }
+@media (max-width: 960px) { :root { --header-height: 3.75rem; } }
 @media (max-width: 640px) { :root { --contact-bar-height: calc(3.5rem + env(safe-area-inset-bottom, 0px)); } }
 
 /* Contain horizontal paint without creating a nested page scroll container. */
@@ -263,7 +263,7 @@ html, body { overflow-x: clip; }
 main section:focus { outline: none; }
 /* Mobile landing screen: header + hero + persistent contact actions. */
 @container site (max-width: 640px) {
- .hero { min-height: calc(100dvh - 4.5rem - 3.5rem - env(safe-area-inset-bottom, 0px)); display: flex; }
+ .hero { min-height: calc(100dvh - 3.75rem - 3.5rem - env(safe-area-inset-bottom, 0px)); display: flex; }
  .hero-content { padding-block: clamp(.875rem, 3dvh, 2.5rem) 3.5rem; }
  .hero .devotion { font-size: .5625rem; margin-bottom: clamp(.625rem, 2.5dvh, 1.5rem); padding: .45rem .75rem; }
  .hero .eyebrow { font-size: .5625rem; margin-bottom: clamp(.625rem, 2dvh, 1.25rem); }
@@ -284,3 +284,17 @@ main section:focus { outline: none; }
   .hero-description { font-size: .75rem; margin-bottom: .75rem; line-height: 1.5; }
  }
 }
+
+/* Compact sticky header; reserve its resting footprint to avoid scroll jumps. */
+.site-header { --header-height: 72px; --compact-header-height: 60px; transition: height .2s ease, margin-bottom .2s ease, box-shadow .2s ease; }
+.site-header.is-compact { height: var(--compact-header-height); margin-bottom: calc(var(--header-height) - var(--compact-header-height)); box-shadow: 0 3px 16px #0000000c; }
+.site-header .brand { font-size: 1.2rem; gap: .5rem; }
+.site-header .brand img { width: 34px; height: 34px; }
+.site-header .brand small { font-size: .5rem; margin-top: .15rem; }
+.site-header .button.small { min-height: 40px; padding-block: .5rem; }
+@container site (max-width: 960px) {
+ .site-header { --header-height: 60px; --compact-header-height: 52px; }
+ .site-header .brand { font-size: 1.0625rem; }
+ .site-header .brand img { width: 30px; height: 30px; }
+}
+@media (prefers-reduced-motion: reduce) { .site-header { transition: none; } }
